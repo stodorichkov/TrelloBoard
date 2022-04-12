@@ -1,24 +1,22 @@
 import Login from "./components/Login";
+import Board from "./components/Board";
+import Recents from "./components/Recents";
 import Header from "./components/Header";
-import { useNavigate} from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import { CssBaseline } from '@mui/material'
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
 const App = () => {
-  const [username, setUsername] = useState(localStorage.getItem('username'))
-  const navigate = useNavigate();
-
-  console.log(username)
-
-  useEffect(() => {
-    if(!username) {
-      navigate("/login")
-    }
-  })
-
   return (
     <>
-      <Header/>
-      <h1>Hello {username}</h1>
+      <Router>
+        <CssBaseline />
+        <Header />
+        <Routes>
+          <Route path="/login" element={<Login username = {"username"}/>} />
+          <Route path="/" element={<Board username = {"username"}/>} />
+          <Route path="/recents" element={<Recents username = {"username"}/>} />
+        </Routes>
+      </Router>
     </>
   );
 }

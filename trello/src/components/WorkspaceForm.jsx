@@ -1,26 +1,16 @@
-import { Typography, Paper, Container, CssBaseline, TextField, Button, Grid } from '@mui/material'
-import { useNavigate} from "react-router-dom";
-import { useState, useEffect } from "react"
+import { Typography, CssBaseline, Button, Grid, Container, Paper, TextField } from '@mui/material'
+import { useState } from "react"
 
-const Login = () => {
-    const navigate = useNavigate();
-    
-    const [username, setUsername] = useState('')
+const WorkspaceForm = (props) => {
+    const [name, setName] = useState('')
 
-    const handleChangeUsername = (event) => {
-        setUsername(event.target.value)
+    const handleChangeName = (event) => {
+        setName(event.target.value)
     }
 
-    const login = () => {
-        localStorage.setItem('username', username)
-        navigate("/")
+    const addWorkspace = () => {
+        props.handleCloseWorkspaceForm()
     }
-
-    useEffect(() => {
-        if(localStorage.getItem('username')) {
-          navigate("/")
-        }
-    })
 
     return (
         <>
@@ -29,21 +19,21 @@ const Login = () => {
                 <Paper elevation={12} style={{padding: "10%"}}>
                     <Grid container spacing={3} justify="center">
                         <Grid item xs={12} sm={12} md={12}>
-                            <Typography variant="h4" color="textPrimary" align="center">Sign in</Typography>
+                            <Typography variant="h4" color="textPrimary" align="center">Add Workspace</Typography>
                         </Grid>
                         <Grid item xs={12} sm={12} md={12}>
                             <TextField
                                 fullWidth
-                                label = "Username"
-                                value = {username}
-                                onChange ={handleChangeUsername}
+                                label = "Workspace name"
+                                value = {name}
+                                onChange ={handleChangeName}
                                 style = {{marginTop: "8%"}}
                             />
                         </Grid>
                         <Grid item xs={12} sm={12} md={12}>
                             <Grid container justifyContent="center" style = {{marginTop: "8%"}}>
                                 <Grid item>
-                                    <Button variant="contained" color="success" size="large" onClick={login}>Sign in</Button>
+                                    <Button variant="contained" color="success" size="large" onClick={addWorkspace}>Create</Button>
                                 </Grid>  
                             </Grid>
                         </Grid>
@@ -54,4 +44,4 @@ const Login = () => {
     );
 }
 
-export default Login;
+export default WorkspaceForm

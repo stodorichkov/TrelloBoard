@@ -6,12 +6,7 @@ import Login from "./components/Login";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-        <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
-      </Router>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
