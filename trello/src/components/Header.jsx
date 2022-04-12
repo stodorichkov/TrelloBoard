@@ -27,6 +27,42 @@ const Header = (props) => {
     const handleOpenWorkspaceForm = () => setOpen(true);
     const handleCloseWorkspaceForm = () => setOpen(false);
 
+    const renderButtons = () => {
+        if (localStorage.getItem('username')) {
+            return  <>
+                        <Grid item>
+                            <Button
+                                id="demo-positioned-button"
+                                aria-controls={isOpen ? 'demo-positioned-menu' : undefined}
+                                aria-haspopup="true"
+                                aria-expanded={isOpen ? 'true' : undefined}
+                                onClick={handleClickPopUp}
+                                style={{color: "white"}}
+                                >
+                                    Workspaces
+                            </Button>
+                        </Grid>
+                        <Grid item>
+                            <Button
+                            onClick={handleClickRecents}
+                            style={{color: "white"}}
+                            >
+                                Recents
+                            </Button>
+                        </Grid>
+                        <Grid item>
+                            <Button
+                            onClick={handleOpenWorkspaceForm}
+                            style={{color: "white"}}
+                            >
+                                Add Workspace
+                            </Button>
+                        </Grid>
+                    </>
+        }
+    }
+
+
     return(
         <>
         <CssBaseline />
@@ -38,34 +74,7 @@ const Header = (props) => {
                     Trello
                     </Typography>
                 </Grid>
-                <Grid item>
-                    <Button
-                        id="demo-positioned-button"
-                        aria-controls={isOpen ? 'demo-positioned-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={isOpen ? 'true' : undefined}
-                        onClick={handleClickPopUp}
-                        style={{color: "white"}}
-                        >
-                            Workspaces
-                        </Button>
-                </Grid>
-                <Grid item>
-                    <Button
-                    onClick={handleClickRecents}
-                    style={{color: "white"}}
-                    >
-                        Recents
-                    </Button>
-                </Grid>
-                <Grid item>
-                    <Button
-                    onClick={handleOpenWorkspaceForm}
-                    style={{color: "white"}}
-                    >
-                        Add Workspace
-                    </Button>
-                </Grid>
+                {renderButtons()}
             </Grid>
             <Menu
                 id="demo-positioned-menu"

@@ -12,9 +12,9 @@ const App = () => {
         <CssBaseline />
         <Header />
         <Routes>
-          <Route path="/login" element={<Login username = {"username"}/>} />
-          <Route path="/" element={<Board username = {"username"}/>} />
-          <Route path="/recents" element={<Recents username = {"username"}/>} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Board />} />
+          <Route path="/recents" element={<Recents />} />
         </Routes>
       </Router>
     </>

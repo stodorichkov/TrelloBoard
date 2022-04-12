@@ -1,6 +1,6 @@
-import { Container, CssBaseline } from '@mui/material'
+import { CssBaseline } from '@mui/material'
 import { useNavigate } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 const Recents = () => {
     const navigate = useNavigate();
