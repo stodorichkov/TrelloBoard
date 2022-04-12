@@ -1,30 +1,20 @@
-import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 import Login from "./components/Login";
+import { useNavigate} from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
 const App = () => {
   const [username, setUsername] = useState('')
-  // const navigate = useNavigate();
-  // if(username == '') {
-  //   navigate("/login")
-  // }
-  // useEffect(() => {
-  //   if(username == '') {
-  //     navigate("/login")
-  //   }
-  //   // else {
-  //   //   navigate("/login")
-  //   // }
-  // })
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if(username == '') {
+      navigate("/login")
+    }
+  })
 
   return (
     <>
-      <Router>
-        <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="/login" element={<Login username={username} setUsername={setUsername} />} />
-        </Routes>
-      </Router>
+      <h1>Home</h1>
     </>
   );
 }
