@@ -1,4 +1,5 @@
 import Login from "./components/Login";
+import Header from "./components/Header";
 import { useNavigate} from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
@@ -16,6 +17,7 @@ const App = () => {
 
   return (
     <>
+      <Header/>
       <h1>Hello {username}</h1>
     </>
   );
