@@ -1,12 +1,19 @@
 import { Typography, Paper, Container, CssBaseline, TextField, Button, Grid } from '@mui/material'
+import { useNavigate} from "react-router-dom";
+import React, { useState } from "react"
 
-const Login = (props) => {
+const Login = () => {
+    const navigate = useNavigate();
+    
+    const [username, setUsername] = useState('')
+
     const handleChangeUsername = (event) => {
-        props.setUsername(event.target.value)
+        setUsername(event.target.value)
     }
 
     const login = () => {
-        localStorage.setItem('username', props.username)
+        localStorage.setItem('username', username)
+        navigate("/")
     }
 
     return (
@@ -18,7 +25,7 @@ const Login = (props) => {
                     <TextField
                       fullWidth
                       label = "Username"
-                      value = {props.username}
+                      value = {username}
                       onChange ={handleChangeUsername}
                       style = {{marginTop: "8%"}}
                     />
