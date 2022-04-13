@@ -1,5 +1,5 @@
 import Login from "./components/Login";
-import Board from "./components/Board";
+import Workspace from "./components/Workspace";
 import Recents from "./components/Recents";
 import Header from "./components/Header";
 import { CssBaseline } from '@mui/material'
@@ -13,7 +13,7 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Board />} />
+          <Route path="/" element={<Workspace />} />
           <Route path="/recents" element={<Recents />} />
         </Routes>
       </Router>

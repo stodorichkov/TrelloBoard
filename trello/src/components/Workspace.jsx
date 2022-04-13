@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
 
-const Board = () => {
+const Workspace = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -22,4 +22,4 @@ const Board = () => {
     )
 }
 
-export default Board
+export default Workspace
