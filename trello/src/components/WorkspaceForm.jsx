@@ -20,6 +20,7 @@ const WorkspaceForm = (props) => {
         }
         workspaces[name] = {}
         localStorage.setItem("workspaces", JSON.stringify(workspaces))
+        props.setWorkspaces(workspaces)
         
         props.handleCloseWorkspaceForm()
     }

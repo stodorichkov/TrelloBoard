@@ -9,9 +9,10 @@ const Header = (props) => {
     const navigate = useNavigate();
     const isOpen = Boolean(boardDD);
 
-    const ref = React.createRef();
     const handleClickPopUp = (event) => {
-        setBoardDD(event.currentTarget);
+        if(Object.keys(props.workspaces).length !== 0) {
+            setBoardDD(event.currentTarget);
+        }
     };
 
     const handleClose = () => {
@@ -33,8 +34,8 @@ const Header = (props) => {
             return  <>
                         <Grid item>
                             <Button
-                                id="demo-positioned-button"
-                                aria-controls={isOpen ? 'demo-positioned-menu' : undefined}
+                                id="basic-button"
+                                aria-controls={isOpen ? 'basic-menu' : undefined}
                                 aria-haspopup="true"
                                 aria-expanded={isOpen ? 'true' : undefined}
                                 onClick={handleClickPopUp}
@@ -63,7 +64,6 @@ const Header = (props) => {
         }
     }
 
-
     return(
         <>
         <CssBaseline />
@@ -77,24 +77,20 @@ const Header = (props) => {
                 </Grid>
                 {renderButtons()}
             </Grid>
+            
             <Menu
-                id="demo-positioned-menu"
-                aria-labelledby="demo-positioned-button"
+                id="basic-menu"
                 anchorEl={boardDD}
                 open={isOpen}
                 onClose={handleClose}
-                anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-                }}
-                transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
+                MenuListProps={{
+                'aria-labelledby': 'basic-button',
                 }}
             >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                { Object.keys(props.workspaces).map(name => <MenuItem onClick={handleClose}>{name}</MenuItem>) }
+                {/* <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                <MenuItem onClick={handleClose}>Logout</MenuItem> */}
             </Menu>
             <Modal
             open={openWorkspaceForm}
@@ -102,7 +98,7 @@ const Header = (props) => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
             >
-                <WorkspaceForm ref = {ref} handleCloseWorkspaceForm={handleCloseWorkspaceForm}/>
+                <WorkspaceForm handleCloseWorkspaceForm={handleCloseWorkspaceForm} setWorkspaces={props.setWorkspaces}/>
             </Modal>
           </Toolbar>
         </AppBar>
