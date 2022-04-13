@@ -1,4 +1,4 @@
-import { Typography, CssBaseline, Button, Grid, AppBar, Toolbar, Menu, MenuItem, Modal} from '@mui/material'
+import { Typography, CssBaseline, Button, Grid, AppBar, Toolbar, Menu, MenuItem, Modal } from '@mui/material'
 import { useState } from "react";
 import { useNavigate} from "react-router-dom";
 import WorkspaceForm from './WorkspaceForm';
@@ -49,6 +49,24 @@ const Header = (props) => {
                             >
                                 Recents
                             </Button>
+                            <Menu
+                                aria-labelledby="demo-positioned-button"
+                                anchorEl={boardDD}
+                                open={isOpen}
+                                onClose={handleClose}
+                                anchorOrigin={{
+                                vertical: 'top',
+                                horizontal: 'left',
+                                }}
+                                transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'left',
+                                }}
+                            >
+                                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                                <MenuItem onClick={handleClose}>My account</MenuItem>
+                                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                            </Menu>
                         </Grid>
                         <Grid item>
                             <Button
@@ -57,16 +75,21 @@ const Header = (props) => {
                             >
                                 Add Workspace
                             </Button>
+                            <Modal
+                            open={openWorkspaceForm}
+                            onClose={handleCloseWorkspaceForm}
+                            >
+                                 <WorkspaceForm handleCloseWorkspaceForm={handleCloseWorkspaceForm}/>
+                            </Modal>
                         </Grid>
                     </>
         }
     }
 
-
     return(
         <>
         <CssBaseline />
-        <AppBar position="fixed" color="primary">
+        <AppBar position="relative" color="primary">
           <Toolbar>
             <Grid container spacing={2}>
                 <Grid item>
@@ -76,33 +99,6 @@ const Header = (props) => {
                 </Grid>
                 {renderButtons()}
             </Grid>
-            <Menu
-                id="demo-positioned-menu"
-                aria-labelledby="demo-positioned-button"
-                anchorEl={boardDD}
-                open={isOpen}
-                onClose={handleClose}
-                anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-                }}
-                transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-                }}
-            >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
-            </Menu>
-            <Modal
-            open={openWorkspaceForm}
-            onClose={handleCloseWorkspaceForm}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-            >
-                <WorkspaceForm handleCloseWorkspaceForm={handleCloseWorkspaceForm}/>
-            </Modal>
           </Toolbar>
         </AppBar>
         </>

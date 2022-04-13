@@ -15,7 +15,7 @@ const Board = () => {
     return (
         <>
             <CssBaseline />
-            <Container maxWidth="100%"  style={{ top: "5%", position: "absolute"}}>
+            <Container maxWidth="100%">
                 <h1>affaf</h1>
             </Container>
         </>
