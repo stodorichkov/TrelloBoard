@@ -1,6 +1,7 @@
-import { Container, CssBaseline, Grid, Button, Stack, Typography, TextField } from '@mui/material'
+import { CssBaseline, Button, Stack, Typography } from '@mui/material'
 import { useNavigate } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import Column from './Column';
 
 
 const Workspace = (props) => {
@@ -25,98 +26,10 @@ const Workspace = (props) => {
                     <Typography variant="h4" color="textPrimary" align="center">There is no choosen worspace</Typography>
                 )}
             </Stack>
-            <Stack direction="row" spacing={5} sx={{borderTop: 2, marginTop: "2%", padding: "1%", background: "red", overflow: "auto"}}>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">1</Typography>
-                <Typography variant="h4" color="textPrimary" align="center">2</Typography>
-            </Stack>
+            <Stack direction="row" justifyContent="flex-start" alignItems="stretch" spacing={2} sx={{marginTop: "2%", padding: "1%"}} >
+                <Column/>
+                <Column/>
+            </Stack>  
         </>
     )
 }
