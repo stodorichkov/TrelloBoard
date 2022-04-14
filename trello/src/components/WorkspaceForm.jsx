@@ -4,7 +4,7 @@ import Alerts from './Alerts'
 
 const WorkspaceForm = (props) => {
     const [name, setName] = useState('')
-    const [WorkspaceAlreadyExist, setWorkspaceAlreadyExist] = useState(null)
+    const [workspaceAlreadyExist, setWorkspaceAlreadyExist] = useState(null)
     const handleChangeName = (event) => {
         setName(event.target.value)
     }
@@ -13,6 +13,10 @@ const WorkspaceForm = (props) => {
         let workspaces = JSON.parse(localStorage.getItem('workspaces'))
         if(!localStorage.getItem('workspaces')) {
             workspaces = {}
+        }
+        if(name === "") {
+            setWorkspaceAlreadyExist("Form must be completed")
+            return
         }
         if(workspaces[name]){
             setWorkspaceAlreadyExist("The workspace already exists")
@@ -38,7 +42,7 @@ const WorkspaceForm = (props) => {
                             <Typography variant="h4" color="textPrimary" align="center">Add Workspace</Typography>
                         </Grid>
                         <Grid item xs={12} sm={12} md={12}>
-                            <Alerts err = {WorkspaceAlreadyExist}/>
+                            <Alerts err = {workspaceAlreadyExist}/>
                         </Grid>
                         <Grid item xs={12} sm={12} md={12}>
                             <TextField
@@ -46,11 +50,10 @@ const WorkspaceForm = (props) => {
                                 label = "Workspace name"
                                 value = {name}
                                 onChange ={handleChangeName}
-                                style = {{marginTop: "8%"}}
                             />
                         </Grid>
                         <Grid item xs={12} sm={12} md={12}>
-                            <Grid container justifyContent="center" style = {{marginTop: "8%"}}>
+                            <Grid container justifyContent="center">
                                 <Grid item>
                                     <Button variant="contained" color="success" size="large" onClick={addWorkspace}>Create</Button>
                                 </Grid>  

@@ -26,6 +26,7 @@ const Header = (props) => {
         let currWorkspace = props.workspaces[workspaceName]
         props.setCurrentWorkspace(currWorkspace)
         localStorage.setItem("currentWorkspace", JSON.stringify(currWorkspace))
+        navigate("/")
         handleClose()
     }
 
@@ -97,7 +98,7 @@ const Header = (props) => {
     return(
         <>
         <CssBaseline />
-        <AppBar position="relative" color="primary">
+        <AppBar position="sticky" color="primary">
           <Toolbar>
             <Grid container spacing={2}>
                 <Grid item>
@@ -107,9 +108,6 @@ const Header = (props) => {
                 </Grid>
                 {renderButtons()}
             </Grid>
-            
-            
-            
           </Toolbar>
         </AppBar>
         </>
