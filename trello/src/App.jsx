@@ -9,6 +9,14 @@ import React, { useState } from "react";
 const App = () => {
 
   const [workspaces, setWorkspaces] = useState(JSON.parse(localStorage.getItem('workspaces')))
+  let isCurrWorkspace = JSON.parse(localStorage.getItem('currentWorkspace'))
+  const [currentWorkspace, setCurrentWorkspace] = useState(isCurrWorkspace ? isCurrWorkspace : {})
+  
+  
+  //console.log(isCurrWorkspace)
+  // if(isCurrWorkspace){
+  //   setCurrentWorkspace(isCurrWorkspace)
+  // }
 
   if(!workspaces) {
     setWorkspaces({})
@@ -18,10 +26,10 @@ const App = () => {
     <>
       <Router>
         <CssBaseline />
-        <Header workspaces={workspaces} setWorkspaces={setWorkspaces} />
+        <Header workspaces={workspaces} setWorkspaces={setWorkspaces} setCurrentWorkspace={setCurrentWorkspace} />
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Workspace />} />
+          <Route path="/" element={<Workspace currentWorkspace={currentWorkspace} />} />
           <Route path="/recents" element={<Recents />} />
         </Routes>
       </Router>

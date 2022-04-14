@@ -18,9 +18,12 @@ const WorkspaceForm = (props) => {
             setWorkspaceAlreadyExist("The workspace already exists")
             return
         }
-        workspaces[name] = {}
-        localStorage.setItem("workspaces", JSON.stringify(workspaces))
+        workspaces[name] = {"name": name}
+        
+        props.setCurrentWorkspace(workspaces[name])
         props.setWorkspaces(workspaces)
+        localStorage.setItem("currentWorkspace", JSON.stringify(workspaces[name]))
+        localStorage.setItem("workspaces", JSON.stringify(workspaces))
         
         props.handleCloseWorkspaceForm()
     }

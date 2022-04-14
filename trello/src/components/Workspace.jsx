@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
 
-const Workspace = () => {
+const Workspace = (props) => {
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -16,7 +16,7 @@ const Workspace = () => {
         <>
             <CssBaseline />
             <Container maxWidth="100%">
-                <h1>affaf</h1>
+                <h1>{props.currentWorkspace["name"]?("Current workspace is:" + props.currentWorkspace["name"]) : "There is no choosen worspace"}</h1>
             </Container>
         </>
     )

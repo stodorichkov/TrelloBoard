@@ -5,19 +5,29 @@ import WorkspaceForm from './WorkspaceForm';
 
 const Header = (props) => {
     // list of workspaces
-    const [boardDD, setBoardDD] = useState(null)
+    const [boardDropDown, setBoardDropDown] = useState(null)
+
     const navigate = useNavigate();
-    const isOpen = Boolean(boardDD);
+    const isOpen = Boolean(boardDropDown);
 
     const handleClickPopUp = (event) => {
         if(Object.keys(props.workspaces).length !== 0) {
-            setBoardDD(event.currentTarget);
+
+            setBoardDropDown(event.currentTarget);
         }
     };
 
     const handleClose = () => {
-        setBoardDD(null);
+        setBoardDropDown(null);
     };
+
+    const handleChoosenBoard = (event) => {
+        let workspaceName = event.currentTarget.innerText
+        let currWorkspace = props.workspaces[workspaceName]
+        props.setCurrentWorkspace(currWorkspace)
+        localStorage.setItem("currentWorkspace", JSON.stringify(currWorkspace))
+        handleClose()
+    }
 
     // oppen recents
     const handleClickRecents = () => {
@@ -32,42 +42,62 @@ const Header = (props) => {
     const renderButtons = () => {
         if (localStorage.getItem('username')) {
             return  <>
-                        <Grid item>
-                            <Button
-                                id="basic-button"
-                                aria-controls={isOpen ? 'basic-menu' : undefined}
-                                aria-haspopup="true"
-                                aria-expanded={isOpen ? 'true' : undefined}
-                                onClick={handleClickPopUp}
-                                style={{color: "white"}}
-                                >
-                                    Workspaces
-                            </Button>
-                        </Grid>
-                        <Grid item>
-                            <Button
-                            onClick={handleClickRecents}
-                            style={{color: "white"}}
-                            >
-                                Recents
-                            </Button>
-                        </Grid>
-                        <Grid item>
-                            <Button
-                            onClick={handleOpenWorkspaceForm}
-                            style={{color: "white"}}
-                            >
-                                Add Workspace
-                            </Button>
-                        </Grid>
-                    </>
+                <Grid item>
+                    <Button
+                        id="basic-button"
+                        aria-controls={isOpen ? 'basic-menu' : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={isOpen ? 'true' : undefined}
+                        onClick={handleClickPopUp}
+                        style={{color: "white"}}
+                        >
+                            Workspaces
+                    </Button>
+                    <Menu
+                        id="basic-menu"
+                        anchorEl={boardDropDown}
+                        open={isOpen}
+                        onClose={handleClose}
+                        MenuListProps={{
+                        'aria-labelledby': 'basic-button',
+                        }}
+                    >
+                        { Object.keys(props.workspaces).map(name => <MenuItem onClick={handleChoosenBoard}>{name}</MenuItem>) }
+                        
+                    </Menu>
+                </Grid>
+                <Grid item>
+                    <Button
+                    onClick={handleClickRecents}
+                    style={{color: "white"}}
+                    >
+                        Recents
+                    </Button>
+                </Grid>
+                <Grid item>
+                    <Button
+                    onClick={handleOpenWorkspaceForm}
+                    style={{color: "white"}}
+                    >
+                        Add Workspace
+                    </Button>
+                    <Modal
+                    open={openWorkspaceForm}
+                    onClose={handleCloseWorkspaceForm}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                    >
+                        <WorkspaceForm handleCloseWorkspaceForm={handleCloseWorkspaceForm} setWorkspaces={props.setWorkspaces} setCurrentWorkspace={props.setCurrentWorkspace}/>
+                    </Modal>
+                </Grid>
+            </>
         }
     }
 
     return(
         <>
         <CssBaseline />
-        <AppBar position="fixed" color="primary">
+        <AppBar position="relative" color="primary">
           <Toolbar>
             <Grid container spacing={2}>
                 <Grid item>
@@ -78,28 +108,8 @@ const Header = (props) => {
                 {renderButtons()}
             </Grid>
             
-            <Menu
-                id="basic-menu"
-                anchorEl={boardDD}
-                open={isOpen}
-                onClose={handleClose}
-                MenuListProps={{
-                'aria-labelledby': 'basic-button',
-                }}
-            >
-                { Object.keys(props.workspaces).map(name => <MenuItem onClick={handleClose}>{name}</MenuItem>) }
-                {/* <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem> */}
-            </Menu>
-            <Modal
-            open={openWorkspaceForm}
-            onClose={handleCloseWorkspaceForm}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-            >
-                <WorkspaceForm handleCloseWorkspaceForm={handleCloseWorkspaceForm} setWorkspaces={props.setWorkspaces}/>
-            </Modal>
+            
+            
           </Toolbar>
         </AppBar>
         </>
