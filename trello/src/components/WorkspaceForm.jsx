@@ -36,6 +36,11 @@ const WorkspaceForm = React.forwardRef((props, ref) => {
             addColumn(workspaces)
             return
         }
+        else if (props.formPurpose === "editColumn"){
+            editColumn(workspaces)
+            return
+        }
+
         props.setCurrentWorkspace(workspaces[name])
         props.setWorkspaces(workspaces)
         localStorage.setItem("currentWorkspace", JSON.stringify(workspaces[name]))
@@ -49,6 +54,16 @@ const WorkspaceForm = React.forwardRef((props, ref) => {
             workspaces[props.workspaceName]["columns"] = []
         }
         workspaces[props.workspaceName]["columns"].push({"name": name, cards: []})
+        props.setCurrentWorkspace(workspaces[props.workspaceName])
+        props.setWorkspaces(workspaces)
+        localStorage.setItem("currentWorkspace", JSON.stringify(workspaces[props.workspaceName]))
+        localStorage.setItem("workspaces", JSON.stringify(workspaces))
+        props.handleCloseWorkspaceForm()
+    }
+
+    const editColumn = (workspaces) => {
+        let columnIndex = workspaces[props.workspaceName]["columns"].findIndex(col => col.name === props.oldName)
+        workspaces[props.workspaceName]["columns"][columnIndex]["name"] = name
         props.setCurrentWorkspace(workspaces[props.workspaceName])
         props.setWorkspaces(workspaces)
         localStorage.setItem("currentWorkspace", JSON.stringify(workspaces[props.workspaceName]))

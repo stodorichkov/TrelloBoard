@@ -6,18 +6,31 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useState, useEffect } from "react"
 import Ticket from './Ticket';
 import TicketForm from './TicketForm';
+import WorkspaceForm from './WorkspaceForm';
 
 const Column = (props) => {
     // menue
     const [columnMenue, setColumnMenue] = useState(null)
-    const isOpen = Boolean(columnMenue);
+    const [openWorkspaceForm, setOpenForm] = useState(false);
+    const [oldName, setOldName] = useState("")
+    const [formPurpose, setFormPurpose] = useState(null)
 
+    const isOpenForm = Boolean(openWorkspaceForm);
+    const isOpen = Boolean(columnMenue);
+    const handleCloseWorkspaceForm = () => setOpenForm(false);
     const handleColumnMenue = (event) => {
         setColumnMenue(event.currentTarget);
     };
     const handleCloseColumnMenue = () => {
         setColumnMenue(null);
     };
+
+    const editColumn = () => {
+        setOpenForm(true)
+        setFormPurpose("editColumn")
+        setOldName(props.column["name"])
+        handleCloseColumnMenue()
+    }
 
     // form
     const [openTicketForm, setOpenTicketForm] = useState(false);
@@ -67,7 +80,7 @@ const Column = (props) => {
                             </ListItemIcon>
                             <ListItemText>Add ticket</ListItemText>
                         </MenuItem>
-                        <MenuItem>
+                        <MenuItem onClick={editColumn}>
                             <ListItemIcon>
                                 <EditIcon fontSize="small" />
                             </ListItemIcon>
@@ -86,6 +99,13 @@ const Column = (props) => {
                         aria-describedby="modal-modal-description"
                         >
                         <TicketForm handleCloseTicketForm={handleCloseTicketForm} setCurrentWorkspace={props.setCurrentWorkspace} setWorkspaces={props.setWorkspaces} column={props.column}/>
+                    </Modal>
+                    <Modal
+                        open={isOpenForm}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                        >
+                        <WorkspaceForm handleCloseWorkspaceForm={handleCloseWorkspaceForm} setWorkspaces={props.setWorkspaces} setCurrentWorkspace={props.setCurrentWorkspace} formPurpose={formPurpose} workspaceName={props.currentWorkspace["name"]} oldName={oldName}/>
                     </Modal>
                 </Stack>
                 <hr/>

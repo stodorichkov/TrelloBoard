@@ -40,14 +40,14 @@ const Workspace = (props) => {
 
     const deleteWorkspace = () => {
         let workspaces = JSON.parse(localStorage.getItem('workspaces'))
-        let archivedWorkspaces = JSON.parse(localStorage.getItem('archivedWorkspaces')) ? JSON.parse(localStorage.getItem('archivedWorkspaces')) : {}
-        archivedWorkspaces[props.currentWorkspace["name"]] = workspaces[props.currentWorkspace["name"]]
+        //let archivedWorkspaces = JSON.parse(localStorage.getItem('archivedWorkspaces')) ? JSON.parse(localStorage.getItem('archivedWorkspaces')) : {}
+        //archivedWorkspaces[props.currentWorkspace["name"]] = workspaces[props.currentWorkspace["name"]]
         delete workspaces[props.currentWorkspace["name"]]
         props.setWorkspaces(workspaces)
         props.setCurrentWorkspace({})
         localStorage.setItem('workspaces', JSON.stringify(workspaces))
         localStorage.setItem("currentWorkspace", JSON.stringify({}))
-        localStorage.setItem("archivedWorkspaces", JSON.stringify(archivedWorkspaces))
+        //localStorage.setItem("archivedWorkspaces", JSON.stringify(archivedWorkspaces))
         handleCloseBoardMenue()
     }
 
@@ -117,7 +117,7 @@ const Workspace = (props) => {
             </Stack>
             <Stack direction="row" justifyContent="flex-start" alignItems="stretch" spacing={3} sx={{padding: "1%", overflowX: "auto"}} >
                 { props.currentWorkspace["columns"] ?
-                    (props.currentWorkspace["columns"].map(column => <Column column={column} key={props.currentWorkspace["columns"].indexOf(column)} setCurrentWorkspace={props.setCurrentWorkspace} setWorkspaces={props.setWorkspaces}/>)) : null
+                    (props.currentWorkspace["columns"].map(column => <Column column={column} key={props.currentWorkspace["columns"].indexOf(column)} setCurrentWorkspace={props.setCurrentWorkspace} setWorkspaces={props.setWorkspaces} currentWorkspace={props.currentWorkspace}/>)) : null
                 }
             </Stack>   
         </>
