@@ -14,6 +14,18 @@ const TicketInfo = React.forwardRef((props, ref)=> {
     }
 
     const editTicket = () => {
+        let workspaces = JSON.parse(localStorage.getItem('workspaces'))
+        let currWorkspace = JSON.parse(localStorage.getItem('currentWorkspace'))
+        let columnIndex = workspaces[currWorkspace["name"]]["columns"].findIndex(col => col.name === props.column["name"])
+        let currTicketIndex = workspaces[currWorkspace["name"]]["columns"][columnIndex]["cards"].findIndex(ticket => ticket.name === props.card["name"])
+        workspaces[currWorkspace["name"]]["columns"][columnIndex]["cards"][currTicketIndex]["name"] = name
+        workspaces[currWorkspace["name"]]["columns"][columnIndex]["cards"][currTicketIndex]["description"] = description
+        currWorkspace = workspaces[currWorkspace["name"]]
+        props.setCurrentWorkspace(currWorkspace)
+        props.setWorkspaces(workspaces)
+        localStorage.setItem("currentWorkspace", JSON.stringify(currWorkspace));
+        localStorage.setItem("workspaces", JSON.stringify(workspaces));
+
         props.handleCloseTicketInfo()
     }
 

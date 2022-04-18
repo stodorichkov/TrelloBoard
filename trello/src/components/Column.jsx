@@ -1,9 +1,9 @@
-import { CssBaseline, Stack, Typography, IconButton, Menu, MenuItem, ListItemIcon, ListItemText, Modal, Grid, Paper } from '@mui/material'
+import { CssBaseline, Button, Stack, Typography, IconButton, Menu, MenuItem, ListItemIcon, ListItemText, Modal, Grid, Paper } from '@mui/material'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import EditIcon from '@mui/icons-material/Edit';
-import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import ArchiveIcon from '@mui/icons-material/Archive';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Ticket from './Ticket';
 import TicketForm from './TicketForm';
 import WorkspaceForm from './WorkspaceForm';
@@ -88,9 +88,9 @@ const Column = (props) => {
                         </MenuItem>
                         <MenuItem onClick={deleteColumn}>
                             <ListItemIcon>
-                                <RemoveCircleIcon fontSize="small" />
+                                <ArchiveIcon fontSize="small" />
                             </ListItemIcon>
-                            <ListItemText>Remove column</ListItemText>
+                            <ListItemText>Archive column</ListItemText>
                         </MenuItem>
                     </Menu>
                     <Modal
@@ -110,8 +110,8 @@ const Column = (props) => {
                 </Stack>
                 <hr/>
                 <Grid container  direction="row" spacing={3} sx={{width: 350, maxHeight: "65vh", overflow: "auto", marginTop: "2%"}}>
-                    {props.column["cards"].length !== 0 ? 
-                        props.column["cards"].map(card => <Ticket card={card} key={props.column["cards"].indexOf(card)}/>) 
+                    {props.column["cards"].length != 0 ? 
+                        props.column["cards"].map(card => <Ticket card={card} key={props.column["cards"].indexOf(card)} column={props.column}/>) 
                     : null}
                 </Grid>
             </Paper>
