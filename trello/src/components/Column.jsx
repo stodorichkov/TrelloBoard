@@ -72,7 +72,7 @@ const Column = (props) => {
                         aria-labelledby="modal-modal-title"
                         aria-describedby="modal-modal-description"
                         >
-                        <TicketForm handleCloseTicketForm={handleCloseTicketForm}/>
+                        <TicketForm handleCloseTicketForm={handleCloseTicketForm} setCurrentWorkspace={props.setCurrentWorkspace} setWorkspaces={props.setWorkspaces} column={props.column}/>
                     </Modal>
                 </Stack>
                 <hr/>

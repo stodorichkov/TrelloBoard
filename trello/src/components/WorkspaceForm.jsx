@@ -16,7 +16,6 @@ const WorkspaceForm = React.forwardRef((props, ref) => {
     const handleChangeName = (event) => {
         setName(event.currentTarget.value)
     }
-    console.log("While loop")
     const checkFormPurpose = () => {
         
         let workspaces = JSON.parse(localStorage.getItem('workspaces'))

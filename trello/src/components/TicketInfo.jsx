@@ -2,7 +2,7 @@ import { Typography, CssBaseline, Button, Grid, Container, Paper, TextField, Sta
 import CloseIcon from '@mui/icons-material/Close';
 import React, { useState } from "react";
 
-const TicketInfo = (props) => {
+const TicketInfo = React.forwardRef((props, ref)=> {
     const [name, setName] = useState('')
     const [description, setDescription] =  useState('')
 
@@ -74,6 +74,6 @@ const TicketInfo = (props) => {
             </Container>
         </>
     );
-}
+})
 
 export default TicketInfo

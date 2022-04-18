@@ -117,7 +117,7 @@ const Workspace = (props) => {
             </Stack>
             <Stack direction="row" justifyContent="flex-start" alignItems="stretch" spacing={3} sx={{padding: "1%", overflowX: "auto"}} >
                 { props.currentWorkspace["columns"] ?
-                    (props.currentWorkspace["columns"].map(column => <Column column={column} key={props.currentWorkspace["columns"].indexOf(column)}/>)) : null
+                    (props.currentWorkspace["columns"].map(column => <Column column={column} key={props.currentWorkspace["columns"].indexOf(column)} setCurrentWorkspace={props.setCurrentWorkspace} setWorkspaces={props.setWorkspaces}/>)) : null
                 }
             </Stack>   
         </>
