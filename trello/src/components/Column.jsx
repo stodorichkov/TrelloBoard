@@ -1,19 +1,65 @@
-import { Typography, Paper, Container, CssBaseline, TextField, Button, Grid, Stack, IconButton, Divider } from '@mui/material'
+import { CssBaseline, Button, Stack, Typography, IconButton, Menu, MenuItem, ListItemIcon, ListItemText, Divider, Grid, Paper } from '@mui/material'
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import EditIcon from '@mui/icons-material/Edit';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { useNavigate} from "react-router-dom";
 import { useState, useEffect } from "react"
+
 const Column = (props) => {
+    const [columnMenue, setColumnMenue] = useState(null)
+    const isOpen = Boolean(columnMenue);
+
+    const handleColumnMenue = (event) => {
+        setColumnMenue(event.currentTarget);
+    };
+
+    const handleCloseColumnMenue = () => {
+        setColumnMenue(null);
+    };
+
     return (
         <>
         <CssBaseline />
                 <Paper elevation={1} style={{padding: "1%"}}>
-                    <Grid container spacing={4} justifyContent="center"  sx={{width: 300}}>
+                    <Grid container spacing={4} justifyContent="center"  sx={{minWidth: 300}}>
                         <Grid item xs={12} sm={12} md={12}>
                             <Stack direction="row" justifyContent="space-between" alignItems="stretch" spacing={0}>
                                 <Typography variant="h6" color="textPrimary">Sign in</Typography>
-                                <IconButton>
+                                <IconButton 
+                                    id="column-button"
+                                    aria-controls={isOpen ? 'column-menue' : undefined}
+                                    aria-haspopup="true"
+                                    aria-expanded={isOpen ? 'true' : undefined}
+                                    onClick={handleColumnMenue}
+                                >
                                     <MoreVertIcon />
                                 </IconButton>
+                                <Menu
+                                    id="column-menue"
+                                    anchorEl={columnMenue}
+                                    open={isOpen}
+                                    onClose={handleCloseColumnMenue}
+                                    aria-labelledby="column-button"
+                                >
+                                    <MenuItem>
+                                        <ListItemIcon>
+                                            <AddCircleIcon fontSize="small" />
+                                        </ListItemIcon>
+                                        <ListItemText>Add ticket</ListItemText>
+                                    </MenuItem>
+                                    <MenuItem>
+                                        <ListItemIcon>
+                                            <EditIcon fontSize="small" />
+                                        </ListItemIcon>
+                                        <ListItemText>Edit column</ListItemText>
+                                    </MenuItem>
+                                    <MenuItem>
+                                        <ListItemIcon>
+                                            <RemoveCircleIcon fontSize="small" />
+                                        </ListItemIcon>
+                                        <ListItemText>Delete column</ListItemText>
+                                    </MenuItem>
+                                </Menu>
                             </Stack>
                             <Divider />
                         </Grid>

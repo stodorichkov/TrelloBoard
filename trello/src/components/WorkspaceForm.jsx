@@ -1,8 +1,8 @@
 import { Typography, CssBaseline, Button, Grid, Container, Paper, TextField } from '@mui/material'
-import { useState } from "react"
+import React, { useState } from "react"
 import Alerts from './Alerts'
 
-const WorkspaceForm = (props) => {
+const WorkspaceForm = React.forwardRef((props, ref) => {
     const [name, setName] = useState('')
     const [workspaceAlreadyExist, setWorkspaceAlreadyExist] = useState(null)
     const handleChangeName = (event) => {
@@ -67,6 +67,6 @@ const WorkspaceForm = (props) => {
             </Container>
         </>
     );
-}
+})
 
 export default WorkspaceForm

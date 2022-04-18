@@ -62,8 +62,14 @@ const Header = (props) => {
                         MenuListProps={{
                         'aria-labelledby': 'basic-button',
                         }}
+                        PaperProps={{
+                            style: {
+                              maxHeight: 100 * 4.5,
+                              minWidth: '13ch',
+                            },
+                        }}
                     >
-                        { Object.keys(props.workspaces).map(name => <MenuItem onClick={handleChoosenBoard}>{name}</MenuItem>) }
+                        { Object.keys(props.workspaces).map(name => <MenuItem onClick={handleChoosenBoard} key={name}>{name}</MenuItem>) }
                         
                     </Menu>
                 </Grid>
@@ -98,7 +104,7 @@ const Header = (props) => {
     return(
         <>
         <CssBaseline />
-        <AppBar position="sticky" color="primary">
+        <AppBar position="relative" color="primary">
           <Toolbar>
             <Grid container spacing={2}>
                 <Grid item>
