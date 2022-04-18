@@ -29,7 +29,7 @@ const App = () => {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Workspace currentWorkspace={currentWorkspace} setWorkspaces={setWorkspaces} setCurrentWorkspace={setCurrentWorkspace}/>} />
-          <Route path="/recents" element={<Recents />} />
+          <Route path="/recents" element={<Recents workspaces={workspaces}/>} />
         </Routes>
       </Router>
     </>

@@ -1,12 +1,12 @@
 import { Typography, CssBaseline, Button, Grid, Container, Paper, TextField, Stack, IconButton } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close';
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import Alerts from './Alerts'
 
 const TicketForm = React.forwardRef((props, ref) => {
     const [name, setName] = useState('')
     const [description, setDescription] =  useState('')
-    const [datetime, setDatetime] = useState(new Date())
+    const datetime = new Date()
     const [alert, setAlert] = useState('')
 
     const addTicket = () => {
