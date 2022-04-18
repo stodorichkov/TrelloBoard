@@ -46,7 +46,7 @@ const TicketInfo = React.forwardRef((props, ref)=> {
                             <TextField
                                 fullWidth
                                 label = "Ticket create date"
-                                value = {props.card["datetime"]}
+                                value = {Date(props.card["datetime"])}
                                 InputProps={{
                                     readOnly: true,
                                 }}
