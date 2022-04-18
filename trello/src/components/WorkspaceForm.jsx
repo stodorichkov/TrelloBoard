@@ -4,20 +4,19 @@ import React, { useState, useEffect } from "react"
 import Alerts from './Alerts'
 
 const WorkspaceForm = React.forwardRef((props, ref) => {
-    const [name, setName] = useState('')
+    const [name, setName] = useState(props.oldName)
+    let title = ""
+    // useEffect(() => {
+    //     if(props.workspaceName && props.formPurpose !== "editWorkspace"){
+    //         setName("")
+    //     }
+    // })
 
-    useEffect(() => {
-        if (props.oldName) {
-            setName(props.oldName)
-        }
-    })
-    
-    //const [oldName, setOldName] = useState(props.oldName)
     const [workspaceAlreadyExist, setWorkspaceAlreadyExist] = useState(null)
     const handleChangeName = (event) => {
-        setName(event.target.value)
+        setName(event.currentTarget.value)
     }
-
+    console.log("While loop")
     const checkFormPurpose = () => {
         
         let workspaces = JSON.parse(localStorage.getItem('workspaces'))
@@ -31,14 +30,30 @@ const WorkspaceForm = React.forwardRef((props, ref) => {
         if (props.formPurpose === "new"){
             addWorkspace(workspaces)
         }
-        else if (props.formPurpose === "edit"){
+        else if (props.formPurpose === "editWorkspace"){
             editWorkspace(workspaces)
+        }
+        else if (props.formPurpose === "createColumn"){
+            addColumn(workspaces)
+            return
         }
         props.setCurrentWorkspace(workspaces[name])
         props.setWorkspaces(workspaces)
         localStorage.setItem("currentWorkspace", JSON.stringify(workspaces[name]))
         localStorage.setItem("workspaces", JSON.stringify(workspaces))
         
+        props.handleCloseWorkspaceForm()
+    }
+
+    const addColumn = (workspaces) => {
+        if(!workspaces[props.workspaceName]["columns"]){
+            workspaces[props.workspaceName]["columns"] = []
+        }
+        workspaces[props.workspaceName]["columns"].push({"name": name, cards: []})
+        props.setCurrentWorkspace(workspaces[props.workspaceName])
+        props.setWorkspaces(workspaces)
+        localStorage.setItem("currentWorkspace", JSON.stringify(workspaces[props.workspaceName]))
+        localStorage.setItem("workspaces", JSON.stringify(workspaces))
         props.handleCloseWorkspaceForm()
     }
 
@@ -53,9 +68,30 @@ const WorkspaceForm = React.forwardRef((props, ref) => {
     }
 
     const editWorkspace = (workspaces) => {
-        workspaces[props.oldName]["name"] = name
-        workspaces[name] = workspaces[props.oldName]
-        delete workspaces[props.oldName]
+        let oldName = props.workspaceName
+        workspaces[oldName]["name"] = name
+        workspaces[name] = workspaces[oldName]
+        delete workspaces[oldName]
+    }
+
+    const renderPrimaryText = () => {
+        if (props.formPurpose === "new"){
+            title = "Workspace name"
+            return <Typography variant="h4" color="textPrimary" align="center">Add workspace</Typography>
+        }
+        else if (props.formPurpose === "editWorkspace"){
+            title = "Workspace name"
+            return <Typography variant="h4" color="textPrimary" align="center">Edit workspace</Typography>
+        }
+        else if (props.formPurpose === "createColumn"){
+            title = "Column name"
+            return <Typography variant="h4" color="textPrimary" align="center">Add column</Typography>
+        }
+        else if (props.formPurpose === "editColumn"){
+            title = "Column name"
+            return <Typography variant="h4" color="textPrimary" align="center">Edit column</Typography>
+        }
+        
     }
 
     return (
@@ -73,12 +109,7 @@ const WorkspaceForm = React.forwardRef((props, ref) => {
                     </Stack>
                     <Grid container spacing={5} justifyContent="center">
                         <Grid item xs={12} sm={12} md={12}>
-                            {props.oldName
-                            ? 
-                            <Typography variant="h4" color="textPrimary" align="center">Edit workspace</Typography>
-                            :
-                            <Typography variant="h4" color="textPrimary" align="center">Add workspace</Typography>
-                            }
+                            {renderPrimaryText()}
                         </Grid>
                         { workspaceAlreadyExist ? (
                             <Grid item xs={12} sm={12} md={12}>
@@ -89,7 +120,7 @@ const WorkspaceForm = React.forwardRef((props, ref) => {
                         <Grid item xs={12} sm={12} md={12}>
                             <TextField
                                 fullWidth
-                                label = "Workspace name"
+                                label = {title}
                                 value = {name}
                                 onChange ={handleChangeName}
                             />

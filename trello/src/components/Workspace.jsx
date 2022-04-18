@@ -12,9 +12,19 @@ import WorkspaceForm from './WorkspaceForm';
 const Workspace = (props) => {
     const [boardMenue, setBoardMenue] = useState(null)
     const [openWorkspaceForm, setOpenForm] = useState(false);
-    const handleOpenWorkspaceForm = () => {
+    const [formPurpose, setFormPurpose] = useState(null)
+    const [oldName, setOldName] = useState("")
+    const handleOpenFormEditWorkspace = () => {
         handleCloseBoardMenue()
-        setOpenForm(true);
+        setOpenForm(true)
+        setFormPurpose("editWorkspace")
+        setOldName(props.currentWorkspace["name"])
+    }
+    const handleOpenFormCreateColumn = () => {
+        handleCloseBoardMenue()
+        setOpenForm(true)
+        setFormPurpose("createColumn")
+        setOldName("")
     }
     const handleCloseWorkspaceForm = () => setOpenForm(false);
     const isOpenBoard = Boolean(boardMenue);
@@ -61,13 +71,13 @@ const Workspace = (props) => {
                             onClose={handleCloseBoardMenue}
                             aria-labelledby="board-button"
                         >
-                            <MenuItem>
+                            <MenuItem onClick = {handleOpenFormCreateColumn}>
                                 <ListItemIcon>
                                     <AddCircleIcon fontSize="small" />
                                 </ListItemIcon>
                                 <ListItemText>Add column</ListItemText>
                             </MenuItem>
-                            <MenuItem onClick={handleOpenWorkspaceForm}>
+                            <MenuItem onClick = {handleOpenFormEditWorkspace}>
                                 <ListItemIcon>
                                     <EditIcon fontSize="small" />
                                 </ListItemIcon>
@@ -86,7 +96,7 @@ const Workspace = (props) => {
                             aria-labelledby="modal-modal-title"
                             aria-describedby="modal-modal-description"
                             >
-                            <WorkspaceForm handleCloseWorkspaceForm={handleCloseWorkspaceForm} setWorkspaces={props.setWorkspaces} setCurrentWorkspace={props.setCurrentWorkspace} formPurpose={"edit"} oldName={props.currentWorkspace["name"]}/>
+                            <WorkspaceForm handleCloseWorkspaceForm={handleCloseWorkspaceForm} setWorkspaces={props.setWorkspaces} setCurrentWorkspace={props.setCurrentWorkspace} formPurpose={formPurpose} workspaceName={props.currentWorkspace["name"]} oldName={oldName}/>
                         </Modal>
                     </>
                 ) : (
