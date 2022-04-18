@@ -77,9 +77,9 @@ const Column = (props) => {
                 </Stack>
                 <hr/>
                 <Grid container  direction="row" spacing={3} sx={{width: 350, maxHeight: "65vh", overflow: "auto", marginTop: "2%"}}>
-                    <Ticket />
-                    <Ticket />
-                    <Ticket />
+                    {props.column["cards"].length != 0 ? 
+                        props.column["cards"].map(card => <Ticket card={card} key={props.column["cards"].indexOf(card)}/>) 
+                    : null}
                 </Grid>
             </Paper>
         </>

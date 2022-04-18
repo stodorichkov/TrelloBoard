@@ -3,8 +3,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import React, { useState } from "react";
 
 const TicketInfo = React.forwardRef((props, ref)=> {
-    const [name, setName] = useState('')
-    const [description, setDescription] =  useState('')
+    const [name, setName] = useState(props.card["name"])
+    const [description, setDescription] =  useState(props.card["description"])
 
     const handleChangeName = (event) => {
         setName(event.target.value)
@@ -46,7 +46,7 @@ const TicketInfo = React.forwardRef((props, ref)=> {
                             <TextField
                                 fullWidth
                                 label = "Ticket create date"
-                                value = {name}
+                                value = {props.card["datetime"]}
                                 InputProps={{
                                     readOnly: true,
                                 }}

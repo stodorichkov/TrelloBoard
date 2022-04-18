@@ -21,13 +21,9 @@ const TicketForm = React.forwardRef((props, ref) => {
         let workspaces = JSON.parse(localStorage.getItem('workspaces'))
         let currWorkspace = JSON.parse(localStorage.getItem('currentWorkspace'))
         let newTicket = {"name": name, "description":description, "datetime": datetime}
-        console.log("column: ", props.column)
         let columnIndex = workspaces[currWorkspace["name"]]["columns"].findIndex(col => col.name === props.column["name"])
-        console.log("column index: ", columnIndex)
-        console.log(workspaces[currWorkspace["name"]]["columns"][columnIndex]["cards"])
         workspaces[currWorkspace["name"]]["columns"][columnIndex]["cards"].push(newTicket)
         currWorkspace = workspaces[currWorkspace["name"]]
-        console.log("currWorkspace: ", currWorkspace)
         props.setCurrentWorkspace(currWorkspace)
         props.setWorkspaces(workspaces)
         localStorage.setItem("currentWorkspace", JSON.stringify(currWorkspace));

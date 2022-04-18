@@ -34,7 +34,7 @@ const Ticket = (props) => {
     }
 
     //archive
-
+    
     return (
         <>
             <CssBaseline />
@@ -42,7 +42,7 @@ const Ticket = (props) => {
                 <Card >
                     <CardHeader
                         titleTypographyProps={{fontSize: "16px"}}
-                        title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum maximus ultrices sapien eu viverra. Aenean enim risus, hendrerit non dui non, ornare consectetur ipsum. Vestibulum aliquam ligula sed nisi luctus, ac faucibus tortor aliquam."
+                        title={props.card["name"]}
                     />
                     <CardActions>
                         <IconButton aria-label="settings" color='primary' onClick={handleOpenTicketInfo}>
@@ -53,7 +53,7 @@ const Ticket = (props) => {
                         aria-labelledby="modal-modal-title"
                         aria-describedby="modal-modal-description"
                         >
-                            <TicketInfo handleCloseTicketInfo={handleCloseTicketInfo}/>
+                            <TicketInfo handleCloseTicketInfo={handleCloseTicketInfo} card={props.card}/>
                         </Modal>
                         <IconButton 
                             aria-label="settings" 
