@@ -26,13 +26,12 @@ const Column = (props) => {
         setOpenTicketForm(true);
     }
     const handleCloseTicketForm = () => setOpenTicketForm(false);
-
     return (
         <>
             <CssBaseline />
             <Paper elevation={6} sx={{ border: 1, padding: "1%", backgroundColor: "#eeeeee"}}>
                 <Stack direction="row" justifyContent="space-between">
-                    <Typography variant="h6" color="textPrimary">Sign in</Typography>
+                    <Typography variant="h6" color="textPrimary">{props.column["name"]}</Typography>
                     <IconButton 
                         id="column-button"
                         aria-controls={isOpen ? 'column-menue' : undefined}

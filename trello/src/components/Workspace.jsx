@@ -67,7 +67,6 @@ const Workspace = (props) => {
                             id="board-menue"
                             anchorEl={boardMenue}
                             open={isOpenBoard}
-                            //onClick={handleCloseBoardMenue}
                             onClose={handleCloseBoardMenue}
                             aria-labelledby="board-button"
                         >
@@ -104,22 +103,9 @@ const Workspace = (props) => {
                 )}
             </Stack>
             <Stack direction="row" justifyContent="flex-start" alignItems="stretch" spacing={3} sx={{padding: "1%", overflowX: "auto"}} >
-                <Column/>
-                <Column/>
-                <Column/>
-                <Column/>
-                <Column/>
-                <Column/>
-                <Column/>
-                <Column/>
-                <Column/>
-                <Column/>
-                <Column/>
-                <Column/>
-                <Column/>
-                <Column/>
-                <Column/>
-                <Column/>
+                { props.currentWorkspace["columns"] ?
+                    (props.currentWorkspace["columns"].map(column => <Column column={column} key={props.currentWorkspace["columns"].indexOf(column)}/>)) : null
+                }
             </Stack>   
         </>
     )
