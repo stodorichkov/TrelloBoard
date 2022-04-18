@@ -6,6 +6,9 @@ import WorkspaceForm from './WorkspaceForm';
 const Header = (props) => {
     // list of workspaces
     const [boardDropDown, setBoardDropDown] = useState(null)
+    const [openWorkspaceForm, setOpen] = useState(false);
+    const handleOpenWorkspaceForm = () => setOpen(true);
+    const handleCloseWorkspaceForm = () => setOpen(false);
 
     const navigate = useNavigate();
     const isOpen = Boolean(boardDropDown);
@@ -34,11 +37,6 @@ const Header = (props) => {
     const handleClickRecents = () => {
         navigate("/recents")
     }
-
-    // new workspace
-    const [openWorkspaceForm, setOpen] = useState(false);
-    const handleOpenWorkspaceForm = () => setOpen(true);
-    const handleCloseWorkspaceForm = () => setOpen(false);
 
     const renderButtons = () => {
         if (localStorage.getItem('username')) {
@@ -94,7 +92,7 @@ const Header = (props) => {
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
                     >
-                        <WorkspaceForm handleCloseWorkspaceForm={handleCloseWorkspaceForm} setWorkspaces={props.setWorkspaces} setCurrentWorkspace={props.setCurrentWorkspace}/>
+                        <WorkspaceForm handleCloseWorkspaceForm={handleCloseWorkspaceForm} setWorkspaces={props.setWorkspaces} setCurrentWorkspace={props.setCurrentWorkspace} formPurpose={"new"}/>
                     </Modal>
                 </Grid>
             </>

@@ -12,7 +12,6 @@ const App = () => {
   let isCurrWorkspace = JSON.parse(localStorage.getItem('currentWorkspace'))
   const [currentWorkspace, setCurrentWorkspace] = useState(isCurrWorkspace ? isCurrWorkspace : {})
   
-  
   //console.log(isCurrWorkspace)
   // if(isCurrWorkspace){
   //   setCurrentWorkspace(isCurrWorkspace)
@@ -26,10 +25,10 @@ const App = () => {
     <>
       <Router>
         <CssBaseline />
-        <Header workspaces={workspaces} setWorkspaces={setWorkspaces} setCurrentWorkspace={setCurrentWorkspace} />
+        <Header workspaces={workspaces} setWorkspaces={setWorkspaces} setCurrentWorkspace={setCurrentWorkspace}/>
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Workspace currentWorkspace={currentWorkspace} />} />
+          <Route path="/" element={<Workspace currentWorkspace={currentWorkspace} setWorkspaces={setWorkspaces} setCurrentWorkspace={setCurrentWorkspace}/>} />
           <Route path="/recents" element={<Recents />} />
         </Routes>
       </Router>

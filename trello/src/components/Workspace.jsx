@@ -1,4 +1,4 @@
-import { CssBaseline, Button, Stack, Typography, IconButton, Menu, MenuItem, ListItemIcon, ListItemText } from '@mui/material'
+import { CssBaseline, Button, Stack, Typography, IconButton, Menu, MenuItem, ListItemIcon, ListItemText, Modal } from '@mui/material'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import EditIcon from '@mui/icons-material/Edit';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
@@ -6,11 +6,19 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import Column from './Column';
+import WorkspaceForm from './WorkspaceForm';
 
 
 const Workspace = (props) => {
     const [boardMenue, setBoardMenue] = useState(null)
-    const isOpen = Boolean(boardMenue);
+    const [openWorkspaceForm, setOpenForm] = useState(false);
+    const handleOpenWorkspaceForm = () => {
+        handleCloseBoardMenue()
+        setOpenForm(true);
+    }
+    const handleCloseWorkspaceForm = () => setOpenForm(false);
+    const isOpenBoard = Boolean(boardMenue);
+    const isOpenForm = Boolean(openWorkspaceForm);
 
     const handleClickBoardMenue = (event) => {
         setBoardMenue(event.currentTarget);
@@ -20,6 +28,11 @@ const Workspace = (props) => {
         setBoardMenue(null);
     };
 
+    // const handleOpenWorkspaceForm = () => {
+    //     handleCloseBoardMenue()
+    //     setOpen(true);
+        
+    // }
 
     const navigate = useNavigate();
     
@@ -29,7 +42,7 @@ const Workspace = (props) => {
           navigate("/login")
         }
     })
-
+    console.log(isOpenForm)
     return (
         <>
             <CssBaseline />
@@ -39,9 +52,9 @@ const Workspace = (props) => {
                         <Typography variant="h4" color="textPrimary" align="center">{("Workspace: " + props.currentWorkspace["name"])}</Typography>
                         <IconButton 
                             id="board-button"
-                            aria-controls={isOpen ? 'board-menue' : undefined}
+                            aria-controls={isOpenBoard ? 'board-menue' : undefined}
                             aria-haspopup="true"
-                            aria-expanded={isOpen ? 'true' : undefined}
+                            aria-expanded={isOpenBoard ? 'true' : undefined}
                             onClick={handleClickBoardMenue}
                         >
                             <MoreVertIcon />
@@ -49,7 +62,8 @@ const Workspace = (props) => {
                         <Menu
                             id="board-menue"
                             anchorEl={boardMenue}
-                            open={isOpen}
+                            open={isOpenBoard}
+                            //onClick={handleCloseBoardMenue}
                             onClose={handleCloseBoardMenue}
                             aria-labelledby="board-button"
                         >
@@ -59,12 +73,13 @@ const Workspace = (props) => {
                                 </ListItemIcon>
                                 <ListItemText>Add column</ListItemText>
                             </MenuItem>
-                            <MenuItem>
+                            <MenuItem onClick={handleOpenWorkspaceForm}>
                                 <ListItemIcon>
                                     <EditIcon fontSize="small" />
                                 </ListItemIcon>
-                                <ListItemText>Edit board</ListItemText>
+                                <ListItemText>Edit board</ListItemText> 
                             </MenuItem>
+                            
                             <MenuItem>
                                 <ListItemIcon>
                                     <RemoveCircleIcon fontSize="small" />
@@ -72,6 +87,14 @@ const Workspace = (props) => {
                                 <ListItemText>Delete board</ListItemText>
                             </MenuItem>
                         </Menu>
+                        <Modal
+                            open={isOpenForm}
+                            onClose={handleCloseWorkspaceForm}
+                            aria-labelledby="modal-modal-title"
+                            aria-describedby="modal-modal-description"
+                            >
+                                <WorkspaceForm handleCloseWorkspaceForm={handleCloseWorkspaceForm} setWorkspaces={props.setWorkspaces} setCurrentWorkspace={props.setCurrentWorkspace} formPurpose={"edit"} oldName={props.currentWorkspace["name"]}/>
+                            </Modal>
                     </>
                 ) : (
                     <Typography variant="h4" color="textPrimary" align="center">There is no choosen worspace</Typography>
@@ -94,7 +117,7 @@ const Workspace = (props) => {
                 <Column/>
                 <Column/>
                 <Column/>
-            </Stack>  
+            </Stack>   
         </>
     )
 }
