@@ -1,22 +1,31 @@
-import { CssBaseline, Button, Stack, Typography, IconButton, Menu, MenuItem, ListItemIcon, ListItemText, Divider, Grid, Paper } from '@mui/material'
+import { CssBaseline, Button, Stack, Typography, IconButton, Menu, MenuItem, ListItemIcon, ListItemText, Modal, Grid, Paper } from '@mui/material'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import EditIcon from '@mui/icons-material/Edit';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useState, useEffect } from "react"
 import Ticket from './Ticket';
+import TicketForm from './TicketForm';
 
 const Column = (props) => {
+    // menue
     const [columnMenue, setColumnMenue] = useState(null)
     const isOpen = Boolean(columnMenue);
 
     const handleColumnMenue = (event) => {
         setColumnMenue(event.currentTarget);
     };
-
     const handleCloseColumnMenue = () => {
         setColumnMenue(null);
     };
+
+    // form
+    const [openTicketForm, setOpenTicketForm] = useState(false);
+    const handleOpenTicketForm = () => {
+        handleCloseColumnMenue()
+        setOpenTicketForm(true);
+    }
+    const handleCloseTicketForm = () => setOpenTicketForm(false);
 
     return (
         <>
@@ -40,9 +49,9 @@ const Column = (props) => {
                         onClose={handleCloseColumnMenue}
                         aria-labelledby="column-button"
                     >
-                        <MenuItem>
+                        <MenuItem onClick={handleOpenTicketForm}>
                             <ListItemIcon>
-                                <AddCircleIcon fontSize="small" />
+                                <AddCircleIcon fontSize="small"/>
                             </ListItemIcon>
                             <ListItemText>Add ticket</ListItemText>
                         </MenuItem>
@@ -59,6 +68,13 @@ const Column = (props) => {
                             <ListItemText>Delete column</ListItemText>
                         </MenuItem>
                     </Menu>
+                    <Modal
+                        open={openTicketForm}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                        >
+                        <TicketForm handleCloseTicketForm={handleCloseTicketForm}/>
+                    </Modal>
                 </Stack>
                 <hr/>
                 <Grid container  direction="row" spacing={3} sx={{width: 350, maxHeight: "65vh", overflow: "auto", marginTop: "2%"}}>
