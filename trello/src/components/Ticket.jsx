@@ -53,7 +53,7 @@ const Ticket = (props) => {
                         aria-labelledby="modal-modal-title"
                         aria-describedby="modal-modal-description"
                         >
-                            <TicketInfo handleCloseTicketInfo={handleCloseTicketInfo} card={props.card} column={props.column}/>
+                            <TicketInfo handleCloseTicketInfo={handleCloseTicketInfo} card={props.card} column={props.column} setCurrentWorkspace={props.setCurrentWorkspace} setWorkspaces={props.setWorkspaces}/>
                         </Modal>
                         <IconButton 
                             aria-label="settings" 
