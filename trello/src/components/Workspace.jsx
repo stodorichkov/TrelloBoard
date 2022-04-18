@@ -77,7 +77,21 @@ const Workspace = (props) => {
                     <Typography variant="h4" color="textPrimary" align="center">There is no choosen worspace</Typography>
                 )}
             </Stack>
-            <Stack direction="row" justifyContent="flex-start" alignItems="stretch" spacing={2} sx={{marginTop: "2%", padding: "1%"}} >
+            <Stack direction="row" justifyContent="flex-start" alignItems="stretch" spacing={2} sx={{padding: "1%", overflow: "auto"}} >
+                <Column/>
+                <Column/>
+                <Column/>
+                <Column/>
+                <Column/>
+                <Column/>
+                <Column/>
+                <Column/>
+                <Column/>
+                <Column/>
+                <Column/>
+                <Column/>
+                <Column/>
+                <Column/>
                 <Column/>
                 <Column/>
             </Stack>  

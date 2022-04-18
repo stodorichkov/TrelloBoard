@@ -4,6 +4,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useState, useEffect } from "react"
+import Ticket from './Ticket';
 
 const Column = (props) => {
     const [columnMenue, setColumnMenue] = useState(null)
@@ -19,52 +20,53 @@ const Column = (props) => {
 
     return (
         <>
-        <CssBaseline />
-                <Paper elevation={1} style={{padding: "1%"}}>
-                    <Grid container spacing={4} justifyContent="center"  sx={{minWidth: 300}}>
-                        <Grid item xs={12} sm={12} md={12}>
-                            <Stack direction="row" justifyContent="space-between" alignItems="stretch" spacing={0}>
-                                <Typography variant="h6" color="textPrimary">Sign in</Typography>
-                                <IconButton 
-                                    id="column-button"
-                                    aria-controls={isOpen ? 'column-menue' : undefined}
-                                    aria-haspopup="true"
-                                    aria-expanded={isOpen ? 'true' : undefined}
-                                    onClick={handleColumnMenue}
-                                >
-                                    <MoreVertIcon />
-                                </IconButton>
-                                <Menu
-                                    id="column-menue"
-                                    anchorEl={columnMenue}
-                                    open={isOpen}
-                                    onClose={handleCloseColumnMenue}
-                                    aria-labelledby="column-button"
-                                >
-                                    <MenuItem>
-                                        <ListItemIcon>
-                                            <AddCircleIcon fontSize="small" />
-                                        </ListItemIcon>
-                                        <ListItemText>Add ticket</ListItemText>
-                                    </MenuItem>
-                                    <MenuItem>
-                                        <ListItemIcon>
-                                            <EditIcon fontSize="small" />
-                                        </ListItemIcon>
-                                        <ListItemText>Edit column</ListItemText>
-                                    </MenuItem>
-                                    <MenuItem>
-                                        <ListItemIcon>
-                                            <RemoveCircleIcon fontSize="small" />
-                                        </ListItemIcon>
-                                        <ListItemText>Delete column</ListItemText>
-                                    </MenuItem>
-                                </Menu>
-                            </Stack>
-                            <Divider />
-                        </Grid>
-                    </Grid>
-                </Paper>
+            <CssBaseline />
+            <Paper elevation={6} sx={{ border: 1, padding: "1%", backgroundColor: "#eeeeee"}}>
+                <Stack direction="row" justifyContent="space-between">
+                    <Typography variant="h6" color="textPrimary">Sign in</Typography>
+                    <IconButton 
+                        id="column-button"
+                        aria-controls={isOpen ? 'column-menue' : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={isOpen ? 'true' : undefined}
+                        onClick={handleColumnMenue}
+                    >
+                        <MoreVertIcon />
+                    </IconButton> 
+                    <Menu
+                        id="column-menue"
+                        anchorEl={columnMenue}
+                        open={isOpen}
+                        onClose={handleCloseColumnMenue}
+                        aria-labelledby="column-button"
+                    >
+                        <MenuItem>
+                            <ListItemIcon>
+                                <AddCircleIcon fontSize="small" />
+                            </ListItemIcon>
+                            <ListItemText>Add ticket</ListItemText>
+                        </MenuItem>
+                        <MenuItem>
+                            <ListItemIcon>
+                                <EditIcon fontSize="small" />
+                            </ListItemIcon>
+                            <ListItemText>Edit column</ListItemText>
+                        </MenuItem>
+                        <MenuItem>
+                            <ListItemIcon>
+                                <RemoveCircleIcon fontSize="small" />
+                            </ListItemIcon>
+                            <ListItemText>Delete column</ListItemText>
+                        </MenuItem>
+                    </Menu>
+                </Stack>
+                <hr/>
+                <Grid container  direction="row" spacing={3} sx={{width: 350, maxHeight: 640, overflow: "auto", marginTop: "2%"}}>
+                    <Ticket />
+                    <Ticket />
+                    <Ticket />
+                </Grid>
+            </Paper>
         </>
     )
 }
