@@ -26,6 +26,19 @@ const Column = (props) => {
         setOpenTicketForm(true);
     }
     const handleCloseTicketForm = () => setOpenTicketForm(false);
+
+    const deleteColumn = () => {
+        let workspaces = JSON.parse(localStorage.getItem('workspaces'))
+        let currWorkspace = JSON.parse(localStorage.getItem('currentWorkspace'))
+        let columnIndex = currWorkspace["columns"].findIndex(col => col.name === props.column["name"])
+        workspaces[currWorkspace["name"]]["columns"].splice(columnIndex, 1)
+        currWorkspace = workspaces[currWorkspace["name"]]
+        props.setCurrentWorkspace(currWorkspace)
+        props.setWorkspaces(workspaces)
+        localStorage.setItem("currentWorkspace", JSON.stringify(currWorkspace));
+        localStorage.setItem("workspaces", JSON.stringify(workspaces));
+
+    }
     return (
         <>
             <CssBaseline />
@@ -60,7 +73,7 @@ const Column = (props) => {
                             </ListItemIcon>
                             <ListItemText>Edit column</ListItemText>
                         </MenuItem>
-                        <MenuItem>
+                        <MenuItem onClick={deleteColumn}>
                             <ListItemIcon>
                                 <ArchiveIcon fontSize="small" />
                             </ListItemIcon>
