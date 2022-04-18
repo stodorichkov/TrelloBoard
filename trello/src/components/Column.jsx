@@ -61,7 +61,7 @@ const Column = (props) => {
                     </Menu>
                 </Stack>
                 <hr/>
-                <Grid container  direction="row" spacing={3} sx={{width: 350, maxHeight: 640, overflow: "auto", marginTop: "2%"}}>
+                <Grid container  direction="row" spacing={3} sx={{width: 350, maxHeight: "65vh", overflow: "auto", marginTop: "2%"}}>
                     <Ticket />
                     <Ticket />
                     <Ticket />

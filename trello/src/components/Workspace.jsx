@@ -28,12 +28,6 @@ const Workspace = (props) => {
         setBoardMenue(null);
     };
 
-    // const handleOpenWorkspaceForm = () => {
-    //     handleCloseBoardMenue()
-    //     setOpen(true);
-        
-    // }
-
     const navigate = useNavigate();
     
 
@@ -42,7 +36,7 @@ const Workspace = (props) => {
           navigate("/login")
         }
     })
-    console.log(isOpenForm)
+
     return (
         <>
             <CssBaseline />
@@ -89,18 +83,17 @@ const Workspace = (props) => {
                         </Menu>
                         <Modal
                             open={isOpenForm}
-                            onClose={handleCloseWorkspaceForm}
                             aria-labelledby="modal-modal-title"
                             aria-describedby="modal-modal-description"
                             >
-                                <WorkspaceForm handleCloseWorkspaceForm={handleCloseWorkspaceForm} setWorkspaces={props.setWorkspaces} setCurrentWorkspace={props.setCurrentWorkspace} formPurpose={"edit"} oldName={props.currentWorkspace["name"]}/>
-                            </Modal>
+                            <WorkspaceForm handleCloseWorkspaceForm={handleCloseWorkspaceForm} setWorkspaces={props.setWorkspaces} setCurrentWorkspace={props.setCurrentWorkspace} formPurpose={"edit"} oldName={props.currentWorkspace["name"]}/>
+                        </Modal>
                     </>
                 ) : (
                     <Typography variant="h4" color="textPrimary" align="center">There is no choosen worspace</Typography>
                 )}
             </Stack>
-            <Stack direction="row" justifyContent="flex-start" alignItems="stretch" spacing={2} sx={{padding: "1%", overflow: "auto"}} >
+            <Stack direction="row" justifyContent="flex-start" alignItems="stretch" spacing={3} sx={{padding: "1%", overflowX: "auto"}} >
                 <Column/>
                 <Column/>
                 <Column/>

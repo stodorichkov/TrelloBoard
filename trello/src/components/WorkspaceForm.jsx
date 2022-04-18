@@ -1,9 +1,17 @@
-import { Typography, CssBaseline, Button, Grid, Container, Paper, TextField } from '@mui/material'
-import React, { useState } from "react"
+import { Typography, CssBaseline, Button, Grid, Container, Paper, TextField, Stack, IconButton } from '@mui/material'
+import CloseIcon from '@mui/icons-material/Close';
+import React, { useState, useEffect } from "react"
 import Alerts from './Alerts'
 
 const WorkspaceForm = React.forwardRef((props, ref) => {
     const [name, setName] = useState('')
+
+    useEffect(() => {
+        if (props.oldName) {
+            setName(props.oldName)
+        }
+    })
+    
     //const [oldName, setOldName] = useState(props.oldName)
     const [workspaceAlreadyExist, setWorkspaceAlreadyExist] = useState(null)
     const handleChangeName = (event) => {
@@ -50,21 +58,24 @@ const WorkspaceForm = React.forwardRef((props, ref) => {
         delete workspaces[props.oldName]
     }
 
-    console.log(props.oldName)
-    console.log(props)
-    console.log(typeof(props))
-    console.log(typeof(props.oldName))
-
     return (
         <>
             <CssBaseline />
             <Container maxWidth="xs" style={{marginTop: "10%"}}>
-                <Paper elevation={12} style={{padding: "10%"}}>
-                    <Grid container spacing={3} justifyContent="center">
+                <Paper elevation={12} style={{padding: "8%"}}>
+                    <Stack
+                        direction="row"
+                        justifyContent="flex-end"
+                    >
+                        <IconButton size="large" onClick={props.handleCloseWorkspaceForm}>
+                            <CloseIcon fontSize="large" />
+                        </IconButton>
+                    </Stack>
+                    <Grid container spacing={5} justifyContent="center">
                         <Grid item xs={12} sm={12} md={12}>
                             {props.oldName
                             ? 
-                            <Typography variant="h4" color="textPrimary" align="center">Edit {props.oldName}</Typography>
+                            <Typography variant="h4" color="textPrimary" align="center">Edit workspace</Typography>
                             :
                             <Typography variant="h4" color="textPrimary" align="center">Add workspace</Typography>
                             }

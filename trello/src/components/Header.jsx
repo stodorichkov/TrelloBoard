@@ -88,7 +88,6 @@ const Header = (props) => {
                     </Button>
                     <Modal
                     open={openWorkspaceForm}
-                    onClose={handleCloseWorkspaceForm}
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
                     >
