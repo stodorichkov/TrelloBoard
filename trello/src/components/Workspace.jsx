@@ -38,6 +38,19 @@ const Workspace = (props) => {
         setBoardMenue(null);
     };
 
+    const deleteWorkspace = () => {
+        let workspaces = JSON.parse(localStorage.getItem('workspaces'))
+        let archivedWorkspaces = JSON.parse(localStorage.getItem('archivedWorkspaces')) ? JSON.parse(localStorage.getItem('archivedWorkspaces')) : {}
+        archivedWorkspaces[props.currentWorkspace["name"]] = workspaces[props.currentWorkspace["name"]]
+        delete workspaces[props.currentWorkspace["name"]]
+        props.setWorkspaces(workspaces)
+        props.setCurrentWorkspace({})
+        localStorage.setItem('workspaces', JSON.stringify(workspaces))
+        localStorage.setItem("currentWorkspace", JSON.stringify({}))
+        localStorage.setItem("archivedWorkspaces", JSON.stringify(archivedWorkspaces))
+        handleCloseBoardMenue()
+    }
+
     const navigate = useNavigate();
     
 
@@ -83,7 +96,7 @@ const Workspace = (props) => {
                                 <ListItemText>Edit board</ListItemText> 
                             </MenuItem>
                             
-                            <MenuItem>
+                            <MenuItem onClick = {deleteWorkspace}   >
                                 <ListItemIcon>
                                     <RemoveCircleIcon fontSize="small" />
                                 </ListItemIcon>
