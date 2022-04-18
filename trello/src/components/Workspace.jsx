@@ -1,7 +1,7 @@
 import { CssBaseline, Button, Stack, Typography, IconButton, Menu, MenuItem, ListItemIcon, ListItemText, Modal } from '@mui/material'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import EditIcon from '@mui/icons-material/Edit';
-import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import ArchiveIcon from '@mui/icons-material/Archive';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
@@ -98,9 +98,9 @@ const Workspace = (props) => {
                             
                             <MenuItem onClick = {deleteWorkspace}   >
                                 <ListItemIcon>
-                                    <RemoveCircleIcon fontSize="small" />
+                                    <ArchiveIcon  fontSize="small" />
                                 </ListItemIcon>
-                                <ListItemText>Delete board</ListItemText>
+                                <ListItemText>Archive board</ListItemText>
                             </MenuItem>
                         </Menu>
                         <Modal

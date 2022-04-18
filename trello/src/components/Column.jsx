@@ -1,7 +1,7 @@
 import { CssBaseline, Button, Stack, Typography, IconButton, Menu, MenuItem, ListItemIcon, ListItemText, Modal, Grid, Paper } from '@mui/material'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import EditIcon from '@mui/icons-material/Edit';
-import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import ArchiveIcon from '@mui/icons-material/Archive';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useState, useEffect } from "react"
 import Ticket from './Ticket';
@@ -62,9 +62,9 @@ const Column = (props) => {
                         </MenuItem>
                         <MenuItem>
                             <ListItemIcon>
-                                <RemoveCircleIcon fontSize="small" />
+                                <ArchiveIcon fontSize="small" />
                             </ListItemIcon>
-                            <ListItemText>Delete column</ListItemText>
+                            <ListItemText>Archive column</ListItemText>
                         </MenuItem>
                     </Menu>
                     <Modal
